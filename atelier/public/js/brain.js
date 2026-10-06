@@ -21,18 +21,19 @@ export function validateMessage(raw) {
   if (typeof raw !== 'string') {
     return { ok: false, error: 'Le message doit être du texte.' };
   }
-  if (raw === '') {
-    return { ok: false, error: 'Le message ne doit pas être vide.' };
-  }
-  const value = raw.trim();
-  if (value.length > 280) {
+    const value = raw.trim();
+
+    if (value === '') {
+        return { ok: false, error: 'Le message ne doit pas être vide.' };
+    }
+  if (value.length > LIMITE) {
     return { ok: false, error: `Le message doit contenir ${LIMITE} caractères au maximum.` };
   }
   return { ok: true, value };
 }
 
 export function replyTo(message) {
-  const texte = String(message).toLowerCase();
+  const texte = String(message).trim().toLowerCase();
   if (texte === 'salut' || texte === 'bonjour') {
     return REPONSES.salut;
   }
@@ -45,8 +46,9 @@ export function replyTo(message) {
   if (Object.hasOwn(MOTS, texte)) {
     return MOTS[texte];
   }
+
   // Message inconnu : on rappelle ce que Cap Web sait faire.
-  return REPONSES.aide;
+    return `Je n'ai pas compris. Essayez « aide » pour voir ce que je sais faire.`;
 }
 
 
