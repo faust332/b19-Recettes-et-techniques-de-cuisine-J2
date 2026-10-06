@@ -66,19 +66,19 @@ Pour aller plus loin, avec l'agent, les demandes du formateur :
 |---|---|
 | Fonction tirée | `estEnMajuscules(message)` |
 | Le rouge vu (message exact) | `SyntaxError: The requested module '../public/js/brain.js' does not provide an export named 'estEnMajuscules'` |
-| Identifiant du commit `test:` | À récupérer avec `git log --oneline` |
-| Identifiant du commit `feat:` | Pas encore fait |
-| Casse volontaire : la ligne changée | Pas encore fait |
-| Casse volontaire : le test devenu rouge | Pas encore fait |
+| Identifiant du commit `test:` | `0612a3a` |
+| Identifiant du commit `feat:` | `41af93c` |
+| Casse volontaire : la ligne changée | `return message === message.toUpperCase();` remplacée temporairement par `return false;` |
+| Casse volontaire : le test devenu rouge | `C1 : un message en majuscules donne true` et `C4 : il faut au moins deux lettres en majuscules` |
 | Pour aller plus loin : la deuxième fonction | Pas encore fait |
 
-Les critères C1 à C5 de votre fonction, recopiés de la fiche :
+### Critères C1 à C5
 
 - **C1** : `'SALUT'` et `'OÙ EST LE REFUGE ?'` donnent `true`.
 - **C2** : `'Salut'` et `'SALUT toi'` donnent `false`.
 - **C3** : sans lettre (`'123 !'`), donne `false`.
-- **C4** : il faut deux lettres au moins : `'OK'` donne `true`, `'A'` donne `false`.
-- **C5** : ce qui n'est pas du texte donne `false`, sans erreur.
+- **C4** : il faut au moins deux lettres : `'OK'` donne `true`, `'A'` donne `false`.
+- **C5** : une valeur qui n'est pas du texte donne `false`, sans erreur.
 
 ## R4 · La revue de code
 
