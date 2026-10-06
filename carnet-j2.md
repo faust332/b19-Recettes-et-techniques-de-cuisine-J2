@@ -27,7 +27,22 @@ Les tests rouges du départ, et ce que vous en avez fait :
 
 | Test rouge | Cause trouvée (une phrase) | Fichier | Message du commit `fix:` |
 |---|---|---|---|
-| | | | |
+| ✖ refuse le vide et les espaces seuls (2.6907ms) | | | |
+| ✖ accepte 250 caractères et refuse 251 (0.9851ms) | | | |
+| ✖ Contrat CP1 — validateMessage (14.2559ms) | | | |
+| ✖ ignore la casse et les espaces autour (4.9963ms) | | | |
+| ✖ reconnaît les deux mots du cahier personnel, quelles que soient la casse et les espaces autour (3.8492ms) | | | |
+| ✖ répond à une phrase inconnue par un repli distinct (12.5294ms) | | | |
+| ✖ Contrat CP1 — replyTo (25.0694ms) | | | |
+| ✖ view.js affiche du texte et ne décide pas des réponses (3.2217ms) | | | |
+| ✖ Contrat CP1 — chaque module garde son rôle (47.4519ms) | | | |
+| ✖ failing tests: | | | |
+| ✖ refuse le vide et les espaces seuls (2.6907ms) | | | |
+| ✖ accepte 250 caractères et refuse 251 (0.9851ms) | | | |
+| ✖ ignore la casse et les espaces autour (4.9963ms) | | | |
+| ✖ reconnaît les deux mots du cahier personnel, quelles que soient la casse et les espaces autour (3.8492ms) | | | |
+| ✖ répond à une phrase inconnue par un repli distinct (12.5294ms) | | | |
+| ✖ view.js affiche du texte et ne décide pas des réponses (3.2217ms) | | | |
 
 Avec l'agent : ce qu'il a proposé et que vous avez refusé, et pourquoi.
 
