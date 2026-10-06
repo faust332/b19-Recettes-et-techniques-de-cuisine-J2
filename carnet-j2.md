@@ -1,12 +1,12 @@
 # Carnet de bord · J2
 
-Binôme : bXX · Membres : … · Nos réglages sont dans `atelier/cahier-personnel.json` : ne les recopiez pas ici.
+Binôme : b19 · Membres : Thomas KLEMPOUZ-RAMOS, Rayan ZOUAOUI · Nos réglages sont dans `atelier/cahier-personnel.json` : ne les recopiez pas ici.
 
 ## Mon positionnement (chacun de vous deux)
 
 Pour chaque notion, chacun écrit « à l'aise » ou « à renforcer ». Ce n'est ni évalué ni classé : c'est votre point de départ pour le bilan individuel de fin de module.
 
-| Notion | Membre 1 : … | Membre 2 : … |
+| Notion | Membre 1 : Rayan ZOUAOUI | Membre 2 : Thomas KLEMPOUZ-RAMOS |
 |---|---|---|
 | Structure HTML | | |
 | CSS et responsive | | |
