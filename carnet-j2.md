@@ -27,22 +27,22 @@ Les tests rouges du départ, et ce que vous en avez fait :
 
 | Test rouge | Cause trouvée (une phrase) | Fichier | Message du commit `fix:` |
 |---|---|---|---|
-| ✖ refuse le vide et les espaces seuls (2.6907ms) | | | |
-| ✖ accepte 250 caractères et refuse 251 (0.9851ms) | | | |
-| ✖ Contrat CP1 — validateMessage (14.2559ms) | | | |
-| ✖ ignore la casse et les espaces autour (4.9963ms) | | | |
-| ✖ reconnaît les deux mots du cahier personnel, quelles que soient la casse et les espaces autour (3.8492ms) | | | |
-| ✖ répond à une phrase inconnue par un repli distinct (12.5294ms) | | | |
-| ✖ Contrat CP1 — replyTo (25.0694ms) | | | |
-| ✖ view.js affiche du texte et ne décide pas des réponses (3.2217ms) | | | |
-| ✖ Contrat CP1 — chaque module garde son rôle (47.4519ms) | | | |
-| ✖ failing tests: | | | |
-| ✖ refuse le vide et les espaces seuls (2.6907ms) | | | |
-| ✖ accepte 250 caractères et refuse 251 (0.9851ms) | | | |
-| ✖ ignore la casse et les espaces autour (4.9963ms) | | | |
-| ✖ reconnaît les deux mots du cahier personnel, quelles que soient la casse et les espaces autour (3.8492ms) | | | |
-| ✖ répond à une phrase inconnue par un repli distinct (12.5294ms) | | | |
-| ✖ view.js affiche du texte et ne décide pas des réponses (3.2217ms) | | | |
+| ✖ refuse le vide et les espaces seuls (2.6907ms) | Le code vérifiait seulement si le message était vide avant de retirer les espaces. | `public/js/brain.js` | `fix: refuse les messages vides et les espaces seuls` |
+| ✖ accepte 250 caractères et refuse 251 (0.9851ms) | La limite utilisée dans le code était 280 au lieu de la constante `LIMITE` fixée à 250. | `public/js/brain.js` | `fix: utilise la limite de caractères configurée` |
+| ✖ Contrat CP1 — validateMessage (14.2559ms) | Le contrat échouait à cause des erreurs de validation du message vide et de la limite de caractères. | `public/js/brain.js` | `fix: corrige la validation des messages` |
+| ✖ ignore la casse et les espaces autour (4.9963ms) | `replyTo` mettait le message en minuscules mais ne supprimait pas les espaces autour. | `public/js/brain.js` | `fix: normalise les messages avant réponse` |
+| ✖ reconnaît les deux mots du cahier personnel, quelles que soient la casse et les espaces autour (3.8492ms) | Les espaces autour du message empêchaient de reconnaître correctement les mots personnels. | `public/js/brain.js` | `fix: normalise les messages avant réponse` |
+| ✖ répond à une phrase inconnue par un repli distinct (12.5294ms) | Une phrase inconnue renvoyait la même réponse que la commande `aide` au lieu d'une réponse distincte. | `public/js/brain.js` | `fix: ajoute un repli distinct pour les messages inconnus` |
+| ✖ Contrat CP1 — replyTo (25.0694ms) | Le contrat échouait à cause de la normalisation des messages et du repli non distinct. | `public/js/brain.js` | `fix: corrige les réponses du cerveau` |
+| ✖ view.js affiche du texte et ne décide pas des réponses (3.2217ms) | `view.js` utilisait `innerHTML` au lieu de `textContent` pour afficher les messages. | `public/js/view.js` | `fix: affiche les messages avec textContent` |
+| ✖ Contrat CP1 — chaque module garde son rôle (47.4519ms) | Le module d'affichage utilisait `innerHTML`, ce qui ne respectait pas le contrat demandé. | `public/js/view.js` | `fix: affiche les messages avec textContent` |
+| ✖ failing tests: | Plusieurs tests du contrat étaient encore rouges à cause des défauts listés ci-dessus. | `public/js/brain.js` et `public/js/view.js` | `fix: corrections du contrat CP1` |
+| ✖ refuse le vide et les espaces seuls (2.6907ms) | Le code vérifiait le vide avant de retirer les espaces du message. | `public/js/brain.js` | `fix: refuse les messages vides et les espaces seuls` |
+| ✖ accepte 250 caractères et refuse 251 (0.9851ms) | Le code utilisait 280 comme limite au lieu de `LIMITE` qui vaut 250. | `public/js/brain.js` | `fix: utilise la limite de caractères configurée` |
+| ✖ ignore la casse et les espaces autour (4.9963ms) | Il manquait `trim()` avant de comparer le message. | `public/js/brain.js` | `fix: normalise les messages avant réponse` |
+| ✖ reconnaît les deux mots du cahier personnel, quelles que soient la casse et les espaces autour (3.8492ms) | Les espaces autour empêchaient la correspondance avec les mots personnels. | `public/js/brain.js` | `fix: normalise les messages avant réponse` |
+| ✖ répond à une phrase inconnue par un repli distinct (12.5294ms) | Le repli d'un message inconnu était identique à la réponse de `aide`. | `public/js/brain.js` | `fix: ajoute un repli distinct pour les messages inconnus` |
+| ✖ view.js affiche du texte et ne décide pas des réponses (3.2217ms) | L'affichage utilisait `innerHTML` au lieu de `textContent`. | `public/js/view.js` | `fix: affiche les messages avec textContent` |
 
 Avec l'agent : ce qu'il a proposé et que vous avez refusé, et pourquoi.
 
@@ -64,15 +64,21 @@ Pour aller plus loin, avec l'agent, les demandes du formateur :
 
 | À remplir | Votre réponse |
 |---|---|
-| Fonction tirée | |
-| Le rouge vu (message exact) | |
-| Identifiant du commit `test:` | |
-| Identifiant du commit `feat:` | |
-| Casse volontaire : la ligne changée | |
-| Casse volontaire : le test devenu rouge | |
-| Pour aller plus loin : la deuxième fonction | |
+| Fonction tirée | `estEnMajuscules(message)` |
+| Le rouge vu (message exact) | `SyntaxError: The requested module '../public/js/brain.js' does not provide an export named 'estEnMajuscules'` |
+| Identifiant du commit `test:` | À récupérer avec `git log --oneline` |
+| Identifiant du commit `feat:` | Pas encore fait |
+| Casse volontaire : la ligne changée | Pas encore fait |
+| Casse volontaire : le test devenu rouge | Pas encore fait |
+| Pour aller plus loin : la deuxième fonction | Pas encore fait |
 
 Les critères C1 à C5 de votre fonction, recopiés de la fiche :
+
+- **C1** : `'SALUT'` et `'OÙ EST LE REFUGE ?'` donnent `true`.
+- **C2** : `'Salut'` et `'SALUT toi'` donnent `false`.
+- **C3** : sans lettre (`'123 !'`), donne `false`.
+- **C4** : il faut deux lettres au moins : `'OK'` donne `true`, `'A'` donne `false`.
+- **C5** : ce qui n'est pas du texte donne `false`, sans erreur.
 
 ## R4 · La revue de code
 
