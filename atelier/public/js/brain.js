@@ -48,3 +48,14 @@ export function replyTo(message) {
   // Message inconnu : on rappelle ce que Cap Web sait faire.
   return REPONSES.aide;
 }
+
+
+export function estEnMajuscules(message) {
+    if (typeof message !== 'string') return false;
+
+    const lettres = message.match(/[A-Za-zÀ-ÖØ-öø-ÿ]/g);
+
+    if (!lettres || lettres.length < 2) return false;
+
+    return message === message.toUpperCase();
+}
