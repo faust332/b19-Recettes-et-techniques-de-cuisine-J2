@@ -75,11 +75,26 @@ limiteElt.textContent = String(LIMITE);
 charger();
 renderMessages(historique, liste);
 
-fetch('/version.json', { headers: { accept: 'application/json' } })
-  .then((reponse) => (reponse.ok ? reponse.json() : null))
-  .then((donnees) => {
-    if (donnees && typeof donnees.version === 'string' && versionElt) {
-      versionElt.textContent = `version ${donnees.version}`;
+async function afficherVersion() {
+    try {
+        const reponse = await fetch('/version.json', {
+            headers: { accept: 'application/json' }
+        });
+
+        if (!reponse.ok) {
+            throw new Error('Erreur lors du chargement de la version');
+        }
+
+        const donnees = await reponse.json();
+
+        if (donnees && typeof donnees.version === 'string' && versionElt) {
+            versionElt.textContent = `version ${donnees.version}`;
+        }
+    } catch {
+        if (versionElt) {
+            versionElt.textContent = 'version indisponible';
+        }
     }
-  })
-  .catch(() => {});
+}
+
+afficherVersion();
