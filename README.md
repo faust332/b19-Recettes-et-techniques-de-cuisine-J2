@@ -93,3 +93,21 @@ Préparez ensuite les 2 fichiers de la remise, en remplaçant `bXX` par votre id
 git bundle create bXX-j2.bundle --all
 Copy-Item carnet-j2.md bXX-carnet-j2.md
 ```
+
+
+## Arborescence du projet
+
+```text
+atelier/
+├── public/
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── brain.js
+│   │   └── view.js
+│   ├── index.html
+│   └── styles.css
+├── server/
+│   └── app.js
+├── tests/
+├── package.json
+└── README.md
