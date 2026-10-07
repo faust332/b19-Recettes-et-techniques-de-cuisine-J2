@@ -84,9 +84,9 @@ Pour aller plus loin, avec l'agent, les demandes du formateur :
 
 | Patch | Accepté ou refusé | Fichier et ligne | Raison |
 |---|---|---|---|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
+| 1 | Accepté | public/js/brain.js, lignes 15 et 44-46 | Ajoute correctement la réponse « merci ». Les 45 tests passent et les essais dans la page sont conformes. |
+| 2 | Refusé | tests/contrat/brain.contrat.test.js, lignes 69, 71 et 86 | Le patch retire les espaces autour des valeurs testées et affaiblit donc le contrat, même si les 46 tests passent. |
+| 3 | Refusé | public/js/view.js, lignes 4-5 et 12 | Le message utilisateur est interprété comme du HTML : `<b>gras</b>` s’affiche en gras au lieu d’afficher les balises littéralement, même si les 46 tests passent. |
 
 Pour aller plus loin : le patch que vous avez corrigé, et ce que vous avez changé.
 
