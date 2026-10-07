@@ -40,7 +40,22 @@ function mettreAJourCompteur() {
 champ.addEventListener('input', mettreAJourCompteur);
 mettreAJourCompteur();
 
-formulaire.addEventListener('submit', (event) => {
+async function demanderConseil() {
+    try {
+        const reponse = await fetch('/api/conseil');
+
+        if (!reponse.ok) {
+            throw new Error('Erreur lors du chargement du conseil');
+        }
+
+        const donnees = await reponse.json();
+        return donnees.conseil;
+    } catch {
+        return 'Conseil indisponible pour le moment.';
+    }
+}
+
+formulaire.addEventListener('submit', async (event) => {
   event.preventDefault();
   const controle = validateMessage(champ.value);
   if (!controle.ok) {
@@ -49,7 +64,12 @@ formulaire.addEventListener('submit', (event) => {
     return;
   }
   historique.push({ role: 'user', text: controle.value });
-  historique.push({ role: 'assistant', text: replyTo(controle.value) });
+  const reponse =
+    controle.value.toLowerCase() === 'conseil'
+      ? await demanderConseil()
+      : replyTo(controle.value);
+
+  historique.push({ role: 'assistant', text: reponse });
   sauvegarder();
   renderMessages(historique, liste);
   champ.value = '';
