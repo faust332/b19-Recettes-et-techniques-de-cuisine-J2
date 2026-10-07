@@ -101,3 +101,23 @@ Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas f
 ## Étape 1 · Le troisième mot
 
 Prédiction : si nous ajoutons un troisième mot dans `MOTS`, la commande « aide » annoncera encore deux mots, car le nombre est écrit en dur dans la réponse.
+
+
+## Étape 3 · Accessibilité avec Lighthouse
+
+- Score avec le label : 100
+- Score sans le label : 93
+- Alerte Lighthouse : `Form elements do not have associated labels`
+
+
+
+
+
+
+
+
+
+
+
+
+
