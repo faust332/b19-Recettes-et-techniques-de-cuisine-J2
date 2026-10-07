@@ -8,16 +8,16 @@ Pour chaque notion, chacun écrit « à l'aise » ou « à renforcer ». Ce n'es
 
 | Notion | Membre 1 : Rayan ZOUAOUI | Membre 2 : Thomas KLEMPOUZ-RAMOS |
 |---|---|---|
-| Structure HTML | | |
-| CSS et responsive | | |
-| JavaScript | | |
-| DOM et événements | | |
-| Git | | |
-| Tests | | |
+| Structure HTML | à l'aise | |
+| CSS et responsive | à renforcer | |
+| JavaScript | à renforcer | |
+| DOM et événements | à renforcer | |
+| Git | à renforcer | |
+| Tests | à renforcer | |
 
 Chacun, en une phrase, son objectif personnel pour J2 et J3.
 
-Membre 1 :
+Membre 1 : Renforcer mes compétences en JavaScript, Git et tests automatisés afin de mieux comprendre et corriger le fonctionnement d'un projet web.
 
 Membre 2 :
 
@@ -93,6 +93,8 @@ Pour aller plus loin : le patch que vous avez corrigé, et ce que vous avez chan
 ## Fin de journée
 
 Chacun, une phrase : ce que vous savez faire ce soir et que vous ne saviez pas faire ce matin. Relisez votre positionnement : une notion est-elle passée de « à renforcer » à « à l'aise » ?
+
+Membre 1 : Je sais maintenant écrire des tests unitaires, utiliser un test rouge pour développer une fonction et mieux comprendre les erreurs retournées par les tests.
 
 
 
